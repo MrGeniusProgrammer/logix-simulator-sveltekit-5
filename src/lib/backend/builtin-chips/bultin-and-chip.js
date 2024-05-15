@@ -23,13 +23,16 @@ export class BuiltinAndChip extends BuiltinChip {
 		/**
 		 * @type {import("../pin").UpdatePins}
 		 */
-		const result = [
-			{
-				state: o,
-				pins: this.outputs
-			}
-		];
-		// result[o] = [this.outputs[0]];
+		let result = [];
+
+		if (this.outputs[0].isUpdatable(o)) {
+			result = [
+				{
+					state: o,
+					pins: this.outputs
+				}
+			];
+		}
 
 		return result;
 	}

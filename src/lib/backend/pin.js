@@ -1,7 +1,7 @@
 /**
  * @typedef UpdatePin
  * @property {import('./state').State} state
- * @property {IterableIterator<Pin>} pins
+ * @property {Array<Pin>} pins
  */
 
 import { STATE_HIGH, STATE_LOW } from './state';
@@ -28,11 +28,6 @@ export class Pin {
 		 * @type {Array<Pin>}
 		 */
 		this.influencePins = [];
-
-		/**
-		 * @type {Map<Pin, boolean>}
-		 */
-		this.dependentPins = new Map();
 	}
 
 	/**
@@ -41,16 +36,6 @@ export class Pin {
 	 */
 	influencePin(pin) {
 		this.influencePins.push(pin);
-		pin.dependentPins.set(this, false);
-	}
-
-	/**
-	 *
-	 * @param {Pin} pin - the pin to link to
-	 */
-	dependPin(pin) {
-		this.dependentPins.set(pin, false);
-		pin.influencePins.push(this);
 	}
 
 	/**
@@ -63,26 +48,16 @@ export class Pin {
 
 	/**
 	 *
-	 * @param {Pin} pin
+	 * @param {import('./state').State} state
 	 * @returns {boolean}
 	 */
-	isUpdatable(pin) {
-		this.dependentPins.set(pin, true);
-
-		if (pin.state === STATE_HIGH && this.state === STATE_LOW) {
-			return true;
+	isUpdatable(state) {
+		if (state === STATE_HIGH) {
+			if (this.state === STATE_LOW) return true;
+			if (this.state === STATE_HIGH) return false;
 		}
 
-		let iterator = this.dependentPins.entries();
-		for (const [pin, isVisited] of iterator) {
-			if (!isVisited || pin.state === STATE_HIGH) return false;
-		}
-
-		if (this.state === STATE_HIGH) {
-			return true;
-		}
-
-		return false;
+		return true;
 	}
 
 	/**
@@ -112,7 +87,7 @@ export class Pin {
 			const length = this.influencePins.length;
 			for (let i = 0; i < length; i++) {
 				const pin = this.influencePins[i];
-				if (!pin.isUpdatable(this)) continue;
+				if (!pin.isUpdatable(state)) continue;
 				pins.push(pin);
 			}
 
@@ -126,15 +101,11 @@ export class Pin {
 
 		// loop over any connected chips
 		for (const chip of this.connectedBuiltinChips) {
-			chip.priority++;
+			// updating pins
+			const updatePins = chip.process();
 
-			if (chip.priority >= chip.inputs.length) {
-				// updating pins
-				const updatePins = chip.process();
-
-				for (const row of updatePins) {
-					result.push(row);
-				}
+			for (const row of updatePins) {
+				result.push(row);
 			}
 		}
 

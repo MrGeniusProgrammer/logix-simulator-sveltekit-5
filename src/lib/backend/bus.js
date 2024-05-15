@@ -12,9 +12,9 @@ export class Bus {
 		this.inputs = inputs;
 		this.outputs = outputs;
 
-		for (const pin of this.inputs) {
-			pin.connectToBus(this);
-		}
+		// for (const pin of this.inputs) {
+		// 	pin.connectToBus(this);
+		// }
 	}
 
 	/**

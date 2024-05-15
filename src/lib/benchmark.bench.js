@@ -1,4 +1,3 @@
-import { describe } from 'vitest';
 import { runComponents, Component } from './anda';
 import { STATE_LOW, STATE_HIGH } from './const';
 import {
@@ -51,7 +50,8 @@ describe.only('bench', () => {
 		 *             p3
 		 */
 
-		simulator.runUpdatePins(p1.update(STATE_LOW));
+		// simulator.runUpdatePins(p1.update(STATE_LOW));
+		simulator.runChip(customChip);
 	});
 
 	bench('backend 1 circuit 2', () => {

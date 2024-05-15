@@ -12,8 +12,6 @@ export class Chip {
 	constructor(inputs, outputs) {
 		this.inputs = inputs;
 		this.outputs = outputs;
-
-		this.priority = 0;
 	}
 
 	/**

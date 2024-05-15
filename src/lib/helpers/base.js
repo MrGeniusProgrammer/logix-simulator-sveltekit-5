@@ -41,7 +41,7 @@ export function getAllPossibleBinaryCombinations(numberOfDigits) {
 	const numberOfPossibleCombinations = Math.pow(2, numberOfDigits);
 
 	/**
-	 * @type {number[]}
+	 * @type {number[][]}
 	 */
 	const allPossibleBinaryCombinations = new Array(numberOfPossibleCombinations);
 

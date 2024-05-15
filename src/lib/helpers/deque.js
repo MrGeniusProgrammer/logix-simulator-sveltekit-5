@@ -1,8 +1,8 @@
 /**
  * @template T
  * @typedef DoubleLinkedItem
- * @property {DoubleLinkedItem | undefined} prev
- * @property {DoubleLinkedItem | undefined} next
+ * @property {DoubleLinkedItem<T> | undefined} prev
+ * @property {DoubleLinkedItem<T> | undefined} next
  * @property {T} value
  */
 
@@ -20,6 +20,11 @@ export class Deque {
 		 * @type {DoubleLinkedItem<T> | undefined}
 		 */
 		this.front = undefined;
+
+		/**
+		 * @type {DoubleLinkedItem<T> | undefined}
+		 */
+		this.back = undefined;
 
 		this.size = 0;
 	}
@@ -41,16 +46,23 @@ export class Deque {
 	pushBack(value) {
 		if (this.back === undefined) {
 			this.back = {
-				value
+				value,
+				prev: undefined,
+				next: undefined
 			};
 
-			this.front = { value };
+			this.front = {
+				value,
+				prev: undefined,
+				next: undefined
+			};
 		} else {
 			const temp = { ...this.back };
 			temp.next = this.back;
 			this.back = {
 				value,
-				prev: temp
+				prev: temp,
+				next: undefined
 			};
 		}
 
@@ -88,17 +100,24 @@ export class Deque {
 	 */
 	pushFront(value) {
 		if (this.front === undefined) {
-			this.front = {
-				value
+			this.back = {
+				value,
+				prev: undefined,
+				next: undefined
 			};
 
-			this.back = { value };
+			this.front = {
+				value,
+				prev: undefined,
+				next: undefined
+			};
 		} else {
 			const temp = { ...this.front };
 			temp.prev = this.front;
 			this.front = {
 				value,
-				next: temp
+				next: temp,
+				prev: undefined
 			};
 		}
 

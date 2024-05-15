@@ -1,6 +1,7 @@
 import { STATE_LOW } from './state';
 import { base2toBase10, getAllPossibleBinaryCombinations } from '../helpers/base';
 import { Chip } from './chip';
+import { STATE_HIGH } from '$lib/const';
 
 export class StaticChip extends Chip {
 	/**
@@ -42,19 +43,38 @@ export class StaticChip extends Chip {
 		/**
 		 * @type {import("./pin").UpdatePins}
 		 */
-		const result = new Map();
+		let result = [];
+
+		/**
+		 * @type {import("./pin").Pin[]}
+		 */
+		const stateLowPins = [];
+
+		/**
+		 * @type {import("./pin").Pin[]}
+		 */
+		const stateHighPins = [];
 
 		for (let i = 0; i < outputs.length; i++) {
 			const output = outputs[i];
 
-			let pins = result.get(output);
-			if (pins === undefined) {
-				pins = [this.outputs[i]];
-				result.set(output, pins);
-			} else {
-				pins.push(this.outputs[i]);
+			if (output === STATE_LOW) {
+				stateLowPins.push(this.outputs[i]);
+			} else if (output === STATE_HIGH) {
+				stateHighPins.push(this.outputs[i]);
 			}
 		}
+
+		result = [
+			{
+				state: STATE_LOW,
+				pins: stateLowPins
+			},
+			{
+				state: STATE_HIGH,
+				pins: stateLowPins
+			}
+		];
 
 		return result;
 	}

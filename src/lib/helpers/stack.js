@@ -4,7 +4,7 @@
 export class Stack {
 	constructor() {
 		/**
-		 * @type {DoubleLinkedItem<T> | undefined}
+		 * @type {import("./deque").DoubleLinkedItem<T> | undefined}
 		 */
 		this.back = undefined;
 
@@ -28,14 +28,17 @@ export class Stack {
 	push(value) {
 		if (this.back === undefined) {
 			this.back = {
-				value
+				value,
+				prev: undefined,
+				next: undefined
 			};
 		} else {
 			const temp = { ...this.back };
 			temp.next = this.back;
 			this.back = {
 				value,
-				prev: temp
+				prev: temp,
+				next: undefined
 			};
 		}
 

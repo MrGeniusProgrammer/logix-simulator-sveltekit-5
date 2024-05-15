@@ -13,7 +13,7 @@ export class CustomChip extends Chip {
 
 	/**
 	 *
-	 * @returns {import("../pin").UpdatePins}
+	 * @returns {import("./pin").UpdatePins}
 	 */
 	process() {
 		/**
