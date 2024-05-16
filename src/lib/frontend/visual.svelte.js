@@ -9,24 +9,12 @@ import { STATE_HIGH } from './state';
 export class VisualPin {
 	/**
 	 *
-	 * @param {HTMLElement} rootElement
-	 * @param {import("./pin").Pin} pin
-	 * @param {Vector2D | undefined} pos
+	 * @param {import("./pin.svelte").Pin} pin
+	 * @param {Vector2D} pos
 	 */
-	constructor(rootElement, pin, pos = undefined) {
+	constructor(pin, pos) {
 		this.pin = pin;
-		this.rootElement = rootElement;
-
-		this.element = document.createElement('div');
-		this.element.setAttribute('data-on', this.pin.state === STATE_HIGH);
-		this.element.setAttribute('class', 'pin');
-		this.pos = pos;
-
-		if (pos !== undefined) {
-			this.element.style.left = `${pos.x}px`;
-			this.element.style.top = `${pos.y}px`;
-			this.element.style.position = 'fixed';
-		}
+		this.pos = $state(pos);
 	}
 
 	handleDrag() {
@@ -40,8 +28,6 @@ export class VisualPin {
 		const handleMouseMove = (e) => {
 			this.pos.x = e.clientX + diffX;
 			this.pos.y = e.clientY + diffY;
-			this.element.style.left = `${this.pos.x}px`;
-			this.element.style.top = `${this.pos.y}px`;
 		};
 
 		this.element.addEventListener('mousedown', (e) => {
@@ -141,13 +127,11 @@ export class VisualWire {
 		this.state = state;
 		this.rootElement = rootElement;
 		this.startPin = startPin;
-    this.endPin = endPin;
-    this.wirePending = false;
-  }
-  
-  handleWireMove() {
-    const handleMouseMove = (e) => {
-      
-    }
-  }
+		this.endPin = endPin;
+		this.wirePending = false;
+	}
+
+	handleWireMove() {
+		const handleMouseMove = (e) => {};
+	}
 }
