@@ -4,7 +4,7 @@ export class Component {
 	/**
 	 *
 	 * @param {number[][][]} ComponentIndexInputs [[[m,n]], [[p,q]]] -> componentOutputs[m][n], componentOutputs[p][q]
-	 * @param {([...args]) => void} executeFn
+	 * @param {(([...args]) => number[])} executeFn
 	 */
 	constructor(ComponentIndexInputs = [], executeFn = () => [0]) {
 		this.ComponentIndexInputs = ComponentIndexInputs;
