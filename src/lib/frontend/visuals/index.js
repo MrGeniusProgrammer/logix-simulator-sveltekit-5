@@ -1,2 +1,3 @@
-export * from './pin';
-export * from './chip';
+export * from './visual-chip';
+export * from './visual-pin';
+export * from './visual-wire';

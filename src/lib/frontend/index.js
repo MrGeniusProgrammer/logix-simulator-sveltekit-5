@@ -5,6 +5,8 @@
  */
 
 export * from './visuals';
-export * from './pin.svelte';
+export * from './pin';
 export * from './const';
 export * from './state';
+export * from './adapter';
+export * from './adapters';
