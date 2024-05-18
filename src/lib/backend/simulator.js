@@ -28,7 +28,7 @@ export class Simulator {
 	 *
 	 * @param {import("./pin").UpdatePins} updatePins
 	 */
-	runUpdatePins(updatePins) {
+	runUpdatePins(updatePins = []) {
 		// merge the incoming updating pins with the internal updating pins
 		this.updatePins = this.updatePins.concat(updatePins);
 

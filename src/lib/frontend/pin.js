@@ -1,9 +1,14 @@
+import { STATE_LOW } from './state';
+
+/**
+ * @template T
+ */
 export class Pin {
 	/**
 	 *
 	 * @param {import("./state").State} state
 	 * @param {string} name
-	 * @param {number} id
+	 * @param {T} id
 	 */
 	constructor(state, name, id) {
 		this.state = state;
