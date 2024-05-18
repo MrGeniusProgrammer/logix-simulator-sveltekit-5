@@ -1,38 +1,48 @@
-# create-svelte
+# logix simulator svelte 5
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+this is a project intended to recreate the feature of real-world cicuit layout and functions in digital computer with the help of `svelte 5` to handle the frontend and the backend compeletely written in javascript to follow one language rule for everything, which is the holy `javascript`.
 
-## Creating a project
+## CLI
 
-If you're seeing this, you've probably already done this step. Congrats!
+The main package manager used in this project is `pnpm`. Please refrain from changing the pacakge manager and creating a pull request with that.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+### Running
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+pnpm run dev
 ```
 
-## Building
-
-To create a production version of your app:
+### Building
 
 ```bash
-npm run build
+pnpm run build
 ```
 
-You can preview the production build with `npm run preview`.
+### Preview
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+```bash
+pnpm run preview
+```
+
+### Test
+
+```bash
+pnpm run test
+```
+
+### Benchmarking
+
+```bash
+pnpm run bench
+```
+
+## TODO
+
+- [x] created the backend that kinda works and passes some tests
+- [ ] styling the frontend with modern look and feel
+- [ ] creating documentation for the code and classes
+- [ ] making a case study of the project
+
+## Contributing
+
+You can contribute by helping to make the frontend and solve some bugs with us. Let's contribute together.
